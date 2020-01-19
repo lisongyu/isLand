@@ -1,9 +1,15 @@
 const Koa = require('koa')
 
+const parser = require('koa-bodyparser')
 const app = new Koa();
 
 const InitMasnager = require('./core/init');
+//全局异常处理
+const catchError = require('./middlewares/exception');
+app.use(parser());
+app.use(catchError)
 InitMasnager.initCore(app)
+
 
 // const book = require('./api/v1/book')
 

@@ -7,9 +7,10 @@ class InitManager{
     //入口方法
     InitManager.app=app
     InitManager.initLoadRouters()
+    InitManager.loadHttpException()
   }
   static initLoadRouters() {
-    const apiDirectory=`${process.pwd()}/app/api`
+    const apiDirectory=`${process.cwd()}/app/api`
     requireDirectory(module, apiDirectory, {
       visit: whenloadModule
     });
@@ -23,6 +24,10 @@ class InitManager{
       
     }
     
+  }
+  static loadHttpException() {
+    const errors = require('./http-exception')
+    global.errs=errors
   }
 }
 

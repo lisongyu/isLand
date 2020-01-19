@@ -2,6 +2,10 @@ const Koa = require('koa')
 
 const app = new Koa();
 
+const book = require('./api/v1/book')
+
+const classic = require('./api/v1/classic')
+
 //应用程序对象 中间件
 
 //发送HTTP KOA 接收HTTp
@@ -9,20 +13,11 @@ const app = new Koa();
 //函数
 
 
+
+
+app.use(book.routes())
+app.use(classic.routes())
+
 //注册 中间件
-app.use(async (ctx, next) => {
-  console.log('hello 7yue')
-  await next()
-  console.log(ctx.r)
-  console.log(2)
-})
 
-app.use(async (ctx, next) => {
-  console.log('hello 8yue')
-  const axios = require('axios');
-  ctx.r = await axios.get('http://7yue.pro')
-
-
-  console.log(4)
-})
 app.listen(3000)
